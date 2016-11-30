@@ -3,47 +3,47 @@
 
 :: Default values
 if DEFINED APPVEYOR (
-    echo Setting Appveyor defaults
-    if NOT DEFINED MSVC_VERSION set MSVC_VERSION=14
-    if NOT DEFINED WITH_NINJA set WITH_NINJA=1
-    if NOT DEFINED CPU_ONLY set CPU_ONLY=1
-    if NOT DEFINED CMAKE_CONFIG set CMAKE_CONFIG=Release
-    if NOT DEFINED CMAKE_BUILD_SHARED_LIBS set CMAKE_BUILD_SHARED_LIBS=0
-    if NOT DEFINED BUILD_PYTHON set BUILD_PYTHON=1
-    if NOT DEFINED BUILD_PYTHON_LAYER set BUILD_PYTHON_LAYER=1
-    if NOT DEFINED BUILD_MATLAB set BUILD_MATLAB=0
-    if NOT DEFINED PYTHON_EXE set PYTHON_EXE=python
-    if NOT DEFINED RUN_TESTS set RUN_TESTS=1
-    if NOT DEFINED RUN_LINT set RUN_LINT=1
-    if NOT DEFINED RUN_INSTALL set RUN_INSTALL=1
-
-    :: Set python 2.7 with conda as the default python
-    set PATH=C:\Miniconda-x64;C:\Miniconda-x64\Scripts;C:\Miniconda-x64\Library\bin;!PATH!
-    :: Check that we have the right python version
-    !PYTHON_EXE! --version
-    :: Add the required channels
-    conda config --add channels conda-forge
-    conda config --add channels willyd
-    :: Update conda
-    conda update conda -y
-    :: Create an environment
-    :: Todo create protobuf package for vc14
-    conda install --yes cmake ninja numpy scipy protobuf==3.1.0.vc12 six scikit-image
-
-    :: Disable the tests in debug config
-    if "%CMAKE_CONFIG%" == "Debug" (
-        echo Disabling tests on appveyor with config == %CMAKE_CONFIG%
-        set RUN_TESTS=0
-    )
+    :: echo Setting Appveyor defaults
+    :: if NOT DEFINED MSVC_VERSION set MSVC_VERSION=14
+    :: if NOT DEFINED WITH_NINJA set WITH_NINJA=1
+    :: if NOT DEFINED CPU_ONLY set CPU_ONLY=1
+    :: if NOT DEFINED CMAKE_CONFIG set CMAKE_CONFIG=Release
+    :: if NOT DEFINED CMAKE_BUILD_SHARED_LIBS set CMAKE_BUILD_SHARED_LIBS=0
+    :: if NOT DEFINED BUILD_PYTHON set BUILD_PYTHON=1
+    :: if NOT DEFINED BUILD_PYTHON_LAYER set BUILD_PYTHON_LAYER=1
+    :: if NOT DEFINED BUILD_MATLAB set BUILD_MATLAB=0
+    :: if NOT DEFINED PYTHON_EXE set PYTHON_EXE=python
+    :: if NOT DEFINED RUN_TESTS set RUN_TESTS=1
+    :: if NOT DEFINED RUN_LINT set RUN_LINT=1
+    :: if NOT DEFINED RUN_INSTALL set RUN_INSTALL=1
+    :: 
+    :: :: Set python 2.7 with conda as the default python
+    :: set PATH=C:\Miniconda-x64;C:\Miniconda-x64\Scripts;C:\Miniconda-x64\Library\bin;!PATH!
+    :: :: Check that we have the right python version
+    :: !PYTHON_EXE! --version
+    :: :: Add the required channels
+    :: conda config --add channels conda-forge
+    :: conda config --add channels willyd
+    :: :: Update conda
+    :: conda update conda -y
+    :: :: Create an environment
+    :: :: Todo create protobuf package for vc14
+    :: conda install --yes cmake ninja numpy scipy protobuf==3.1.0.vc12 six scikit-image
+    :: 
+    :: :: Disable the tests in debug config
+    :: if "%CMAKE_CONFIG%" == "Debug" (
+    ::     echo Disabling tests on appveyor with config == %CMAKE_CONFIG%
+    ::     set RUN_TESTS=0
+    :: )
 
 ) else (
     :: Change the settings here to match your setup
     :: Change MSVC_VERSION to 12 to use VS 2013
-    if NOT DEFINED MSVC_VERSION set MSVC_VERSION=14
+    if NOT DEFINED MSVC_VERSION set MSVC_VERSION=12
     :: Change to 1 to use Ninja generator (builds much faster)
     if NOT DEFINED WITH_NINJA set WITH_NINJA=0
     :: Change to 1 to build caffe without CUDA support
-    if NOT DEFINED CPU_ONLY set CPU_ONLY=0
+    if NOT DEFINED CPU_ONLY set CPU_ONLY=1
     :: Change to Debug to build Debug. This is only relevant for the Ninja generator the Visual Studio generator will generate both Debug and Release configs
     if NOT DEFINED CMAKE_CONFIG set CMAKE_CONFIG=Release
     :: Change to 1 to build a caffe.dll
