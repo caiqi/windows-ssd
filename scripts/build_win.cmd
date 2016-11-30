@@ -117,13 +117,13 @@ mkdir build
 pushd build
 
 :: Download dependencies from VS x64
-echo INFO: Downloading dependencies
-"%PYTHON_EXE%" "%~dp0\download_prebuilt_dependencies.py" --msvc_version v%MSVC_VERSION%0
-
-if ERRORLEVEL 1 (
-  echo ERROR: Downloading dependencies failed
-  exit /b 1
-)
+:: echo INFO: Downloading dependencies
+:: "%PYTHON_EXE%" "%~dp0\download_prebuilt_dependencies.py" --msvc_version v%MSVC_VERSION%0
+:: 
+:: if ERRORLEVEL 1 (
+::   echo ERROR: Downloading dependencies failed
+::   exit /b 1
+:: )
 
 
 :: Add the dependencies to the PATH
