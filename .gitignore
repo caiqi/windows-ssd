@@ -100,7 +100,7 @@ MANIFEST-*
 #Visual Studio files
 *.user
 *.suo
-*.sdf
+examples/*/*lmdb
 *.opensdf
 *.pdb
 *.props
