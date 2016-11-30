@@ -246,20 +246,20 @@ void DetectionOutputLayer<Dtype>::Forward_gpu(
             delete outfiles[label_name];
           }
         } else if (output_format_ == "COCO") {
-          boost::filesystem::path output_directory(output_directory_);
-          boost::filesystem::path file(output_name_prefix_ + ".json");
-          boost::filesystem::path out_file = output_directory / file;
-          std::ofstream outfile;
-          outfile.open(out_file.string().c_str(), std::ofstream::out);
-
-          boost::regex exp("\"(null|true|false|-?[0-9]+(\\.[0-9]+)?)\"");
-          ptree output;
-          output.add_child("detections", detections_);
-          std::stringstream ss;
-          write_json(ss, output);
-          std::string rv = boost::regex_replace(ss.str(), exp, "$1");
-          outfile << rv.substr(rv.find("["), rv.rfind("]") - rv.find("["))
-              << std::endl << "]" << std::endl;
+        //  boost::filesystem::path output_directory(output_directory_);
+        //  boost::filesystem::path file(output_name_prefix_ + ".json");
+        //  boost::filesystem::path out_file = output_directory / file;
+        //  std::ofstream outfile;
+        //  outfile.open(out_file.string().c_str(), std::ofstream::out);
+        //
+        //  boost::regex exp("\"(null|true|false|-?[0-9]+(\\.[0-9]+)?)\"");
+        //  ptree output;
+        //  output.add_child("detections", detections_);
+        //  std::stringstream ss;
+        //  write_json(ss, output);
+        //  std::string rv = boost::regex_replace(ss.str(), exp, "$1");
+        //  outfile << rv.substr(rv.find("["), rv.rfind("]") - rv.find("["))
+        //      << std::endl << "]" << std::endl;
         } else if (output_format_ == "ILSVRC") {
           boost::filesystem::path output_directory(output_directory_);
           boost::filesystem::path file(output_name_prefix_ + ".txt");
